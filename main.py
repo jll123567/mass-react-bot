@@ -19,7 +19,7 @@ async def on_message(message):
 
     if message.content.startswith('m!help'):
         await client.send_message(message.channel, "```m!startVote | reacts with :up_arrow: and :down_arrow:"
-                                                   " to the channel the command is used in (for the last 100 messages)\n"
+                                                   " to the channel the command is used in (for the last 100 messages)\n\n"
                                                    "m!removeVote | remove the bot's reacts\n"
                                                    "m!help | this```")
 
