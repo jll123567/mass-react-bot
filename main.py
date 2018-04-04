@@ -34,4 +34,4 @@ async def on_message(message):
             await client.remove_reaction(log, u"\U0001F44D", client.user)
             await client.remove_reaction(log, u"\U0001F44E", client.user)
 
-client.run('NDMwODI2MTg3NjMyMjc5NTUz.DaV18Q.r-TqJdHvxXaNPvasD-_eUZ_KPT8')
+client.run('token')
