@@ -1,5 +1,4 @@
 import discord
-import asyncio
 
 client = discord.Client()
 
@@ -15,23 +14,23 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.startswith('m!test'):
-        await client.send_message(message.channel, 'hello <:upvote:428244958504550411>')
+        await message.channel.send(message.channel, 'hello <:upvote:428244958504550411>')
 
     if message.content.startswith('m!help'):
-        await client.send_message(message.channel, "```m!startVote | reacts with :up_arrow: and :down_arrow:"
-                                                   " to the channel the command is used in (for the last 100 messages)\n\n"
-                                                   "m!removeVote | remove the bot's reacts\n"
-                                                   "m!help | this```")
-
+        await message.channel.send(message.channel, "```m!startVote | reacts with :up_arrow: and :down_arrow:"
+                                                    "to the channel the command is used in (for the last 100 "
+                                                    "messages)\n\n "
+                                                    "m!removeVote | remove the bot's reacts\n"
+                                                    "m!help | this```")
 
     if message.content.startswith('m!startVote'):
-        async for log in client.logs_from(message.channel, limit=100):
-            await client.add_reaction(log, u"\U0001F44D")
-            await client.add_reaction(log, u"\U0001F44E")
+        async for msg in message.channel.history():
+            await msg.add_reaction(u"\U0001F44D")
+            await msg.add_reaction(u"\U0001F44E")
 
     if message.content.startswith('m!removeVote'):
-        async for log in client.logs_from(message.channel, limit=200):
-            await client.remove_reaction(log, u"\U0001F44D", client.user)
-            await client.remove_reaction(log, u"\U0001F44E", client.user)
+        async for msg in message.channel.history():
+            await msg.clear_reactions()
+
 
 client.run('token')
